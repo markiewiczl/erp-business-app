@@ -21,9 +21,10 @@ class Units
     #[ORM\OneToMany(mappedBy: 'unit', targetEntity: FileCatalogue::class)]
     private Collection $fileCatalogues;
 
-    public function __construct()
+    public function __construct(string $unitName)
     {
         $this->fileCatalogues = new ArrayCollection();
+        $this->unitName = $unitName;
     }
 
     public function getId(): ?int
