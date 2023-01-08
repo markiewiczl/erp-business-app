@@ -29,6 +29,9 @@ class FileCatalogue
     #[ORM\JoinColumn(nullable: false)]
     private ?Units $unit = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class FileCatalogue
     public function setUnit(?Units $unit): self
     {
         $this->unit = $unit;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

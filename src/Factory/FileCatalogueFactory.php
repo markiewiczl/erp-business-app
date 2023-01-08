@@ -13,7 +13,8 @@ class FileCatalogueFactory
         ?string $fileCatalogueIndex,
         ?int $fileQuantity,
         ?float $fileNetPrice,
-        ?Units $units): FileCatalogue {
+        ?Units $units): FileCatalogue
+    {
         $fileCatalogue = new FileCatalogue();
         $fileCatalogue->setFileName($fileName);
         $fileCatalogue->setFileCatalogueIndex($fileCatalogueIndex);
