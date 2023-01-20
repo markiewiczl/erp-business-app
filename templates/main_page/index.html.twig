@@ -1,20 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainPageController!{% endblock %}
-
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container-center">
+    <div class="count">
+       Ilość produktów {{ pagination.getTotalItemCount }}
+    </div>
+    <table class="container-table">
+        <tr>
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'file_catalogue.id') }}</th>
+            <th{% if pagination.isSorted('file_catalogue.file_name') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Nazwa', 'file_catalogue.file_name') }}
+            </th>
+            <th{% if pagination.isSorted('file_catalogue.file_catalogue_index') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Index w Katalogu', 'file_catalogue.file_catalogue_index') }}
+            </th>
+            <th{% if pagination.isSorted('file_catalogue.file_quantity') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Ilość', 'file_catalogue.file_quantity') }}
+            </th>
+            <th{% if pagination.isSorted(['file_catalogue.unit.unit_name']) %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Jednostka miary', 'file_catalogue.unit.unit_name') }}
+            </th>
+            <th{% if pagination.isSorted(['file_catalogue.file_net_price']) %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Cena jednostkowa', 'file_catalogue.file_net_price') }}
+            </th>
+            <th>
+                check
+            </th>
+        </tr>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/app/src/Controller/MainPageController.php'|file_link(0) }}">src/Controller/MainPageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/app/templates/main_page/index.html.twig'|file_link(0) }}">templates/main_page/index.html.twig</a></code></li>
-    </ul>
-</div>
+        {% for file_catalogue in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ file_catalogue.id }}</td>
+                <td>{{ file_catalogue.fileName }}</td>
+                <td>{{ file_catalogue.fileCatalogueIndex }}</td>
+                <td>{{ file_catalogue.fileQuantity }} </td>
+                <td>{{ file_catalogue.unit.unitName }}</td>
+                <td>{{ file_catalogue.fileNetPrice }}</td>
+                <td><input type="checkbox" value={{ file_catalogue.id }} name="directions"></td>
+            </tr>
+        {% endfor %}
+    </table>
+        <div>
+            <button type="button" id="button2">Zmień stan produktów</button>
+        </div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    </div>
+    <script>
+
+        $(document).ready(function() {
+            $("#button2").click(function(){
+                var files = [];
+                $.each($("input[name='directions']:checked"), function(){
+                    files.push($(this).val());
+                });
+                window.location.href=("/change-file-quantity/" + files.join("-"));
+            });
+        });
+
+    </script>
 {% endblock %}

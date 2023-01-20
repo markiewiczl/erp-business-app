@@ -1,0 +1,85 @@
+body, html{
+    width:100%;
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    &:hover{
+        color: black;
+        text-decoration: underline;
+    }
+    &:visited, &:focus{
+        color: black;
+    }
+}
+
+.navbar {
+    text-align:center;
+    height: 3vh;
+    width: 100%;
+    background: grey;
+}
+
+.navbar-left {
+    float: left;
+    margin-left: 3vw;
+}
+
+.navbar-right{
+    display: inline;
+    float: right;
+    margin-right: 2vw;
+}
+
+.navbar-right-item {
+    display: inline;
+    margin: 0 2px 0 2px;
+}
+
+.color {
+    background: lightgrey;
+}
+
+.container-center {
+    width: 95vw;
+    text-align: center;
+    display: flex;
+}
+
+.container-table {
+    margin: 0 auto;
+    width: 75%;
+    padding: 5px;
+}
+
+.container-form-login {
+    margin: 0 auto;
+    width: 75%;
+    padding: 5px;
+    border: 2px double black;
+    margin-top: 50%;
+}
+
+.login-container {
+    position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+}
+
+.login-form {
+    padding: 5px;
+     border: 1px solid black;
+    text-align: center;
+}
+
+.count {
+    border: 1px solid black;
+    height: 5vh;
+    font-size: 24px;
+    padding: 3px;
+}

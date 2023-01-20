@@ -19,7 +19,7 @@ class FileCatalogue
     #[ORM\Column(length: 45)]
     private ?string $fileCatalogueIndex = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options:["default" => 0])]
     private ?int $fileQuantity = null;
 
     #[ORM\Column]
@@ -31,6 +31,11 @@ class FileCatalogue
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    public function __construct()
+    {
+        $this->setFileQuantity(0);
+    }
 
     public function getId(): ?int
     {

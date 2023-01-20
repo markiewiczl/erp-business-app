@@ -2,9 +2,6 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -12,8 +9,29 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
+    <div class="navbar" id="navbar">
+        <div class="navbar-left">
+            <div><a href={{ path('app_main_page') }}>Strona Główna</a></div>
+        </div>
+        <div class="navbar-right">
+            {% if app.user is not same as null %}
+            <div class="navbar-right-item" >
+                <a href={{ path('app_logout') }}>
+                    Wyloguj
+                </a>
+            </div>
+            {% else %}
+            <div class="navbar-right-item" >
+                <a href={{ path('app_login') }}>
+                    Zaloguj
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
         {% block body %}{% endblock %}
     </body>
 </html>
