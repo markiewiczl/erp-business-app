@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form action="{{ path('app_change_file_quantity', { 'changedFilesId' : changedFilesId }) }}">
-        {% for fileCatalogue in fileCatalogues %}
-            <label for="{{ fileCatalogue.fileName }}">{{ fileCatalogue.fileName }}</label>
-            <input type="number" id="{{ fileCatalogue.fileName }}" name="_filename" value="{{ fileCatalogue.fileQuantity }}"><br>
-        {% endfor %}
-        <button type="submit">zmien</button>
-    </form>
+    <div class="login-container">
+        <form class="login-form" action="{{ path('app_change_file_quantity', { 'changedFilesId' : changedFilesId }) }}" method="post">
+            <table class="border-0">
+            {% for fileCatalogue in fileCatalogues %}
+                <tr>
+                    <td><label for="{{ fileCatalogue.fileName }}">{{ fileCatalogue.fileName }}</label></td>
+                    <td><input type="number" id="{{ fileCatalogue.fileName }}" name="{{ fileCatalogue.id }}" value="{{ fileCatalogue.fileQuantity }}"><br></td>
+                </tr>
+            {% endfor %}
+            </table>
+            <button type="submit">zmien</button>
+        </form>
+    </div>
 {% endblock %}

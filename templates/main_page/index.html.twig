@@ -12,21 +12,21 @@
     </div>
     <table class="container-table">
         <tr>
-            <th>{{ knp_pagination_sortable(pagination, 'Id', 'file_catalogue.id') }}</th>
-            <th{% if pagination.isSorted('file_catalogue.file_name') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Nazwa', 'file_catalogue.file_name') }}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'FileCatalogue.id') }}</th>
+            <th{% if pagination.isSorted('e.fileName') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Nazwa', 'e.fileName') }}
             </th>
-            <th{% if pagination.isSorted('file_catalogue.file_catalogue_index') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Index w Katalogu', 'file_catalogue.file_catalogue_index') }}
+            <th{% if pagination.isSorted('FileCatalogue.fileCatalogueIndex') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Index w Katalogu', 'FileCatalogue.fileCatalogueIndex') }}
             </th>
-            <th{% if pagination.isSorted('file_catalogue.file_quantity') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Ilość', 'file_catalogue.file_quantity') }}
+            <th{% if pagination.isSorted('FileCatalogue.fileQuantity') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Ilość', 'fileCatalogue.fileQuantity') }}
             </th>
-            <th{% if pagination.isSorted(['file_catalogue.unit.unit_name']) %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Jednostka miary', 'file_catalogue.unit.unit_name') }}
+            <th{% if pagination.isSorted(['FileFatalogue.Unit.UnitName']) %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Jednostka miary', 'fileFatalogue.Unit.UnitName') }}
             </th>
-            <th{% if pagination.isSorted(['file_catalogue.file_net_price']) %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Cena jednostkowa', 'file_catalogue.file_net_price') }}
+            <th{% if pagination.isSorted(['FileCatalogue.fileNetPrice']) %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Cena jednostkowa', 'FileCatalogue.fileNetPrice') }}
             </th>
             <th>
                 check

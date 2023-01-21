@@ -27,6 +27,17 @@ class ChangeFileQuantityController extends AbstractController
             $fileCatalogues[$key] = $this->fileCatalogueRepository->findOneBy(['id' => $id]);
         }
 
+        if ($request->isMethod('POST')) {
+            foreach ($fileCatalogues as $fileCatalogue) {
+                $fileCatalogueQuantity = $request->get($fileCatalogue->getId());
+                $fileCatalogue->setFileQuantity($fileCatalogueQuantity);
+
+                $this->fileCatalogueRepository->save($fileCatalogue, true);
+            }
+
+            return $this->redirectToRoute('app_main_page');
+        }
+
         return $this->render('change_file_quantity/index.html.twig', [
             'fileCatalogues' => $fileCatalogues,
             'changedFilesId' => $changedFilesId

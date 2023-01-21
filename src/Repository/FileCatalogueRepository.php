@@ -39,28 +39,12 @@ class FileCatalogueRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return FileCatalogue[] Returns an array of FileCatalogue objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?FileCatalogue
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function orderByColumn($order, $column): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.'. $column, $order)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

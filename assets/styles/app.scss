@@ -1,6 +1,6 @@
 body, html{
     width:100%;
-    background: white;
+    background-color: lightgrey;
     margin: 0;
     padding: 0;
 }
@@ -35,13 +35,19 @@ a {
     margin-right: 2vw;
 }
 
-.navbar-right-item {
+.navbar-right-item a{
+    display: inline;
+    margin: 0 2px 0 2px;
+    padding: 1px;
+}
+
+.navbar-right-item{
     display: inline;
     margin: 0 2px 0 2px;
 }
 
 .color {
-    background: lightgrey;
+    background: grey;
 }
 
 .container-center {
