@@ -14,7 +14,7 @@ class UserFactory
         $this->hasher = $hasher;
     }
 
-    public function factoryMethod(?string $email, ?string $password): User
+    public function factoryMethod(?string $email, ?string $password, bool $isAdmin = false): User
     {
         $user = new User();
         $user->setEmail($email);
@@ -22,7 +22,11 @@ class UserFactory
             $user,
             $password
         ));
-        $user->setRoles(['ROLE_USER']);
+        if (!$isAdmin) {
+            $user->setRoles(['ROLE_USER']);
+        } else {
+            $user->setRoles(['ROLE_ADMIN']);
+        }
 
         return $user;
     }

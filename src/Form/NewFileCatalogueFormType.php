@@ -26,7 +26,8 @@ class NewFileCatalogueFormType extends AbstractType
                 'label' => 'index w katalogu'
             ])
             ->add('fileNetPrice', NumberType::class, [
-                'label' => 'cena netto'
+                'label' => 'cena netto',
+                'attr' => ['min' => 0]
             ])
             ->add('image', FileType::class, [
                 'label' => 'Zdjęcie(opcjonalne)',

@@ -16,7 +16,6 @@ services:
       PHP_IDE_CONFIG: "serverName=shop"
     volumes:
       - ./:/app
-      - ./xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
   db:
     image: postgres:13.3

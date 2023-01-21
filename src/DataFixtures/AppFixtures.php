@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $user1 = $this->userFactory->factoryMethod('luke@luke.pl', 'luke');
+        $user1 = $this->userFactory->factoryMethod('luke@luke.pl', 'luke', true);
 
         $user2 = $this->userFactory->factoryMethod('84377@g.elearn.uz.zgora.pl','mustach');
 

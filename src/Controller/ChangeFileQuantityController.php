@@ -30,9 +30,13 @@ class ChangeFileQuantityController extends AbstractController
         if ($request->isMethod('POST')) {
             foreach ($fileCatalogues as $fileCatalogue) {
                 $fileCatalogueQuantity = $request->get($fileCatalogue->getId());
-                $fileCatalogue->setFileQuantity($fileCatalogueQuantity);
+                if ($fileCatalogueQuantity >= 0) {
+                    $fileCatalogue->setFileQuantity($fileCatalogueQuantity);
 
-                $this->fileCatalogueRepository->save($fileCatalogue, true);
+                    $this->fileCatalogueRepository->save($fileCatalogue, true);
+                } else {
+                    throw new \Exception('ilość posiadanych atrybutów nie może być mniejsza niż 0');
+                }
             }
 
             return $this->redirectToRoute('app_main_page');

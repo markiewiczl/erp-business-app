@@ -7,7 +7,7 @@
             {% for fileCatalogue in fileCatalogues %}
                 <tr>
                     <td><label for="{{ fileCatalogue.fileName }}">{{ fileCatalogue.fileName }}</label></td>
-                    <td><input type="number" id="{{ fileCatalogue.fileName }}" name="{{ fileCatalogue.id }}" value="{{ fileCatalogue.fileQuantity }}"><br></td>
+                    <td><input type="number" min="0" id="{{ fileCatalogue.fileName }}" name="{{ fileCatalogue.id }}" value="{{ fileCatalogue.fileQuantity }}"><br></td>
                 </tr>
             {% endfor %}
             </table>

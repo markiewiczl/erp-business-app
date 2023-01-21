@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Form\ChooseCurrencyType;
 use App\Repository\FileCatalogueRepository;
-use App\Resolver\FileCatalogueCurrency;
+use App\Resolver\FileCatalogueCurrencyInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +17,12 @@ class MainPageController extends AbstractController
 
     private PaginatorInterface $pagination;
 
-    private FileCatalogueCurrency $fileCatalogueCurrency;
+    private FileCatalogueCurrencyInterface $fileCatalogueCurrency;
 
     public function __construct(
         FileCatalogueRepository $catalogueRepository,
         PaginatorInterface $pagination,
-        FileCatalogueCurrency $fileCatalogueCurrency
+        FileCatalogueCurrencyInterface $fileCatalogueCurrency
     ) {
         $this->catalogueRepository = $catalogueRepository;
         $this->pagination = $pagination;
@@ -30,7 +30,7 @@ class MainPageController extends AbstractController
     }
 
 
-    #[Route('/{code}', name: 'app_main_page', defaults: ['code' => 'PLN'])]
+    #[Route('/list/{code}', name: 'app_main_page', defaults: ['code' => 'PLN'])]
     public function index(Request $request, string $code): Response
     {
         $form = $this->createForm(ChooseCurrencyType::class);
@@ -54,8 +54,6 @@ class MainPageController extends AbstractController
             $request->query->getInt('page', 1),
             100
         );
-
-//        dump($form);
 
         return $this->render('main_page/index.html.twig', [
             'pagination' => $pagination,

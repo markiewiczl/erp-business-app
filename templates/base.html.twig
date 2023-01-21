@@ -9,6 +9,7 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <title>Omega Segragete System</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
@@ -17,22 +18,24 @@
             <div><a href={{ path('app_main_page') }}>Strona Główna</a></div>
         </div>
         <div class="navbar-right">
-            {% if app.user is not same as null %}
-            <div class="navbar-right-item" >
-                <a href={{ path('app_logout') }}>
-                    Wyloguj
-                </a>
+                <div class="navbar-right-item" >
+                    {% if path(app.request.attributes.get('_route')) is not same as '/login' %}
+                        {% if app.user.roles.0 is same as 'ROLE_ADMIN' %}
+                            <a href={{ path('app_register') }}>
+                                Dodaj użytkownika
+                            </a>
+                        {% endif %}
+                            <a href={{ path('app_new_file_catalogue') }}>
+                                Nowy produkt
+                            </a>
+                            <a href={{ path('app_users_settings') }}>
+                                Zmień Hasło
+                            </a>
+                            <a href={{ path('app_logout') }}>
+                                Wyloguj
+                            </a>
+                    {% endif %}
             </div>
-            {% else %}
-            <div class="navbar-right-item" >
-                <a href={{ path('app_login') }}>
-                    Zaloguj
-                </a>
-                <a href={{ path('app_register') }}>
-                    Rejestracja
-                </a>
-            </div>
-            {% endif %}
         </div>
     </div>
         {% block body %}{% endblock %}

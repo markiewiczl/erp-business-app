@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserSettingController!{% endblock %}
+
+{% block body %}
+    <div class="login-container">
+        <form class="login-form" action="{{ path('app_login') }}" method="post">
+            {{ form(form) }}
+        </form>
+    </div>
+{% endblock %}

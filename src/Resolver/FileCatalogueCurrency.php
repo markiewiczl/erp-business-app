@@ -4,11 +4,11 @@ namespace App\Resolver;
 
 use App\Entity\FileCatalogue;
 
-class FileCatalogueCurrency
+class FileCatalogueCurrency implements FileCatalogueCurrencyInterface
 {
-    private CurrencyExchange $currencyExchange;
+    private CurrencyExchangeInterface $currencyExchange;
 
-    public function __construct(CurrencyExchange $currencyExchange)
+    public function __construct(CurrencyExchangeInterface $currencyExchange)
     {
         $this->currencyExchange = $currencyExchange;
     }
@@ -17,7 +17,7 @@ class FileCatalogueCurrency
     {
         $currencies = $this->currencyExchange->getCurrencies();
 
-        $rate = null;
+        $rate = 1;
 
         foreach ($currencies as $currency) {
             if ($currency['code'] === $code) {
